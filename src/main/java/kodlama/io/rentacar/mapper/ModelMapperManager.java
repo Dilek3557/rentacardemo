@@ -11,8 +11,7 @@ public class ModelMapperManager {
     private ModelMapper modelMapper;
 
     public ModelMapper forResponse() {
-        this.modelMapper.getConfiguration()
-                .setAmbiguityIgnored(true)
+        this.modelMapper.getConfiguration().setAmbiguityIgnored(true)
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
 
         return this.modelMapper;
