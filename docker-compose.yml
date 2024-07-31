@@ -1,0 +1,29 @@
+name: rentacar
+services:
+  postgres:
+    image: bitnami/postgresql:14.12.0
+    environment:
+      POSTGRESQL_DATABASE: rentacardb
+      POSTGRESQL_USERNAME: postgres
+      POSTGRESQL_PASSWORD: 12345
+    volumes:
+      - postgres-data:/bitnami/postgresql
+    ports:
+      - 5432:5432
+  pgadmin:
+    image: dpage/pgadmin4:8.8
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dilek@rentacar.com
+      PGADMIN_DEFAULT_PASSWORD: 12345
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - 5444:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    links:
+      - postgres:pgsql-server
+volumes:
+  postgres-data:
+    driver: local
+  pgadmin-data:
+    driver: local
