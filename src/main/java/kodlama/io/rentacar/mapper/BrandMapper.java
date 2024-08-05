@@ -7,12 +7,8 @@ import kodlama.io.rentacar.dto.response.GetByIdBrandResponse;
 import kodlama.io.rentacar.entity.BrandEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")  // Bu satırı ekleyin
-
 public interface BrandMapper {
-
-    BrandMapper INSTANCE = Mappers.getMapper(BrandMapper.class);
 
     @Mapping(source = "name", target = "name")
     BrandEntity createBrandRequestToBrandEntity(CreateBrandRequest request);

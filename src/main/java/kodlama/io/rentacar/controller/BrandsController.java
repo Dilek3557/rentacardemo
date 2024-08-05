@@ -21,7 +21,8 @@ public class BrandsController {
 
     @GetMapping
     public List<GetAllBrandsResponse> getAll() {
-        return brandService.getAll();
+
+         return brandService.getAll();
     }
 
     @GetMapping("/{id}")
