@@ -25,7 +25,6 @@ public class ModelEntity {
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
-
     private BrandEntity brand;
     @OneToMany(mappedBy = "model")
     private List<CarEntity> cars;
