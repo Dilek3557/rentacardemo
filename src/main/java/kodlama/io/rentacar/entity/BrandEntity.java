@@ -14,9 +14,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "brands")
+@SequenceGenerator(name = "brand_id_seq", sequenceName = "brand_id_seq")
 public class BrandEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "brand_id_seq")
     @Column(name = "id")
     private int id;
 
