@@ -1,6 +1,7 @@
 package kodlama.io.rentacar.entity;
 
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "models")
+@SequenceGenerator(name = "model_id_seq",sequenceName = "model_id_seq")
 public class ModelEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "model_id_seq")
     @Column(name = "id")
     private int id;
 

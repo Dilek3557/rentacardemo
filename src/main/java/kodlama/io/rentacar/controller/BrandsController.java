@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+@RequiredArgsConstructor// Bu anotasyon, final olan tüm alanlar için bir yapıcı (constructor) oluşturur. Bu, bağımlılıkların constructor injection yoluyla enjekte edilmesini sağlar. Bu durumda, brandService otomatik olarak yapıcıda enjekte edilecektir.
 @RequestMapping("/api/brands")
 public class BrandsController {
 

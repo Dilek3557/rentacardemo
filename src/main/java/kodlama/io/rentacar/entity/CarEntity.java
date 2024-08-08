@@ -12,9 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "cars")
+@SequenceGenerator(name = "car_id_seq", sequenceName = "car_id_seq", allocationSize = 1)
 public class CarEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_id_seq")
     @Column(name = "id")
     private int id;
 
@@ -27,12 +28,10 @@ public class CarEntity {
     @Column(name = "modelYear")
     private int modelYear;
 
-
     @Column(name = "state")
     private int state;
 
     @ManyToOne
     @JoinColumn(name = "model_id")
     private ModelEntity model;
-
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog logicalFilePath="db.changelog-1.0.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+<databaseChangeLog  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <changeSet id="create-brands-table" author="hates">
@@ -12,5 +12,54 @@
                 <constraints nullable="false" unique="true" uniqueConstraintName="brands_name_idx"/>
             </column>
         </createTable>
+    </changeSet>
+    <changeSet id="create-models-table" author="hates">
+        <createSequence sequenceName="model_id_seq" minValue="100" incrementBy="50" dataType="int"/>
+        <createTable tableName="models">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="brand_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="models"
+                                 baseColumnNames="brand_id"
+                                 constraintName="fk_models_brands"
+                                 referencedTableName="brands"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="create-cars-table" author="hates">
+        <createTable tableName="cars">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="plate" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="dailyprice" type="double precision">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modelYear" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="cars"
+                                 baseColumnNames="model_id"
+                                 constraintName="fk_cars_models"
+                                 referencedTableName="models"
+                                 referencedColumnNames="id"/>
     </changeSet>
 </databaseChangeLog>

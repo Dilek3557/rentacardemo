@@ -27,6 +27,7 @@ public class ModelService {
     }
 
     public void add(CreateModelRequest createModelRequest) {
+
         ModelEntity model = modelMapper.createModelRequestToModelEntity(createModelRequest);
         modelRepository.save(model);
     }
